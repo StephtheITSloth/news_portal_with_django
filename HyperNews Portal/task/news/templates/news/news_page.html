@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hyper News</title>
+</head>
+<body>
+    <h2>Hyper news</h2>
+
+    <form method="get" action="/news/">
+        <input type="text" name="q" placeholder="Search by title" value="{{ request.GET.q }}">
+        <button type="submit">Search</button>
+    </form>
+
+    <p><a href="/news/create/">Create</a></p>
+
+    {% if grouped_news %}
+        {% for date, items in grouped_news.items %}
+            <h4>{{ date|date:"Y-m-d" }}</h4>
+            <ul>
+                {% for item in items %}
+                    <li>
+                        <a href="/news/{{ item.link }}/">{{ item.title }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    {% elif news %}
+        <h3>Search results</h3>
+        <ul>
+            {% for item in news %}
+                <h4>{{ item.created|date:"Y-m-d"}}</h4>
+                <ul>
+                    <li><a href="/news/{{ item.link }}/">{{ item.title }}</a></li>
+                </ul>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No news yet.</p>
+    {% endif %}
+</body>
+</html>

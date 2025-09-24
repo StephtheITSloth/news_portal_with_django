@@ -1,0 +1,18 @@
+# course config files
+*.yaml
+
+# gradle
+.gradle/
+build
+
+
+# idea config
+.idea
+
+# old stages
+/HyperNews Portal/*
+!/HyperNews Portal/task/
+/HyperNews Portal/task/*
+!/HyperNews Portal/task/hypernews
+!/HyperNews Portal/task/news
+!/HyperNews Portal/task/manage.py
